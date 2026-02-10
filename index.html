@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Be My Valentine 💖</title>
   <style>
     body {
@@ -21,7 +21,7 @@
       padding: 2rem 2.5rem;
       border-radius: 20px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       max-width: 350px;
       width: 90%;
       position: relative;
@@ -50,7 +50,7 @@
 
     button:hover {
       transform: scale(1.05);
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
     }
 
     .yes {
@@ -81,21 +81,15 @@
     .heart {
       position: fixed;
       bottom: -20px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255,255,255,0.85);
       animation: floatUp linear forwards;
       pointer-events: none;
       z-index: 1;
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-110vh) scale(1.4);
-        opacity: 0;
-      }
+      from { transform: translateY(0) scale(1); opacity:1; }
+      to { transform: translateY(-110vh) scale(1.4); opacity:0; }
     }
   </style>
 </head>
@@ -110,21 +104,11 @@
 
     <div id="message" class="message"></div>
 
-    <!-- YES image (from your PC / repo) -->
-    <img
-      id="yesImg"
-      class="result-img"
-      src="yes.jpg"
-      alt="Happy valentine"
-    />
+    <!-- YES image (from your repo) -->
+    <img id="yesImg" class="result-img" src="/yes.jpg" alt="Happy valentine">
 
-    <!-- NO image (from your PC / repo) -->
-    <img
-      id="noImg"
-      class="result-img"
-      src="no.jpg"
-      alt="Wrong answer"
-    />
+    <!-- NO image (from your repo) -->
+    <img id="noImg" class="result-img" src="/no.jpg" alt="Wrong answer">
   </div>
 
   <script>
@@ -139,14 +123,14 @@
 
     function sayNo() {
       const msg = document.getElementById('message');
-      msg.textContent = 'Booooo 😤 wrong answer!';
+      msg.textContent = 'Uh uh 😤 wrong answer!';
       msg.style.display = 'block';
 
       document.getElementById('yesImg').style.display = 'none';
       document.getElementById('noImg').style.display = 'block';
     }
 
-    // Floating hearts
+    // Floating hearts animation
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -162,3 +146,4 @@
   </script>
 </body>
 </html>
+
