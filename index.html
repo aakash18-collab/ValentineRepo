@@ -13,6 +13,7 @@
       align-items: center;
       background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
       font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
 
     .card {
@@ -23,6 +24,8 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       max-width: 350px;
       width: 90%;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
@@ -61,26 +64,27 @@
     }
 
     .message {
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
       font-size: 1.1rem;
       color: #e63946;
       display: none;
     }
 
-    .valentine-img {
-      margin-top: 1.5rem;
+    .result-img {
+      margin-top: 1.2rem;
       width: 100%;
       border-radius: 15px;
       display: none;
     }
-    /* Floating hearts animation */
+
+    /* Floating hearts */
     .heart {
       position: fixed;
       bottom: -20px;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 20px;
+      color: rgba(255, 255, 255, 0.85);
       animation: floatUp linear forwards;
       pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes floatUp {
@@ -106,46 +110,52 @@
 
     <div id="message" class="message"></div>
 
+    <!-- YES image (from your PC / repo) -->
     <img
-      id="valentineImg"
-      class="valentine-img"
-      src="https://images.unsplash.com/photo-1518199266791-5375a83190b7"
-      alt="Cute valentine image"
+      id="yesImg"
+      class="result-img"
+      src="yes.jpg"
+      alt="Happy valentine"
+    />
+
+    <!-- NO image (from your PC / repo) -->
+    <img
+      id="noImg"
+      class="result-img"
+      src="no.jpg"
+      alt="Wrong answer"
     />
   </div>
 
   <script>
-    function sayNo() {
-      const message = document.getElementById('message');
-      const img = document.getElementById('valentineImg');
-
-      img.style.display = 'none';
-      message.style.display = 'block';
-      message.textContent = 'Uh uh 😤 wrong answer!';
-    }
-
     function sayYes() {
-      const message = document.getElementById('message');
-      const img = document.getElementById('valentineImg');
+      const msg = document.getElementById('message');
+      msg.textContent = 'Yayyy, I knew it 🥹🥹';
+      msg.style.display = 'block';
 
-      message.style.display = 'none';
-      img.style.display = 'block';
+      document.getElementById('noImg').style.display = 'none';
+      document.getElementById('yesImg').style.display = 'block';
     }
-      // Floating hearts generator
+
+    function sayNo() {
+      const msg = document.getElementById('message');
+      msg.textContent = 'Booooo 😤 wrong answer!';
+      msg.style.display = 'block';
+
+      document.getElementById('yesImg').style.display = 'none';
+      document.getElementById('noImg').style.display = 'block';
+    }
+
+    // Floating hearts
     function createHeart() {
       const heart = document.createElement('div');
-      heart.classList.add('heart');
+      heart.className = 'heart';
       heart.textContent = '❤️';
-
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
       heart.style.fontSize = 16 + Math.random() * 20 + 'px';
-
+      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
+      setTimeout(() => heart.remove(), 7000);
     }
 
     setInterval(createHeart, 400);
